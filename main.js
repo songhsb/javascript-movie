@@ -20,7 +20,7 @@ function getMovie() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);
-      showMovies(data.results); // 카드만들기
+      showMovies(data.results); // 카드만들기 함수로
     });
 }
 
@@ -38,33 +38,36 @@ function showMovies(data) {
                       <p class="card-rating">${vote_average}</p>
                       <p class="card-overview">${overview}</p>
     `;
-
     cardSection.appendChild(card);
 
-    // 카드클릭시 alert창
+    // card클릭 시 해당영화 페이지로
     card.addEventListener("click", () => {
-      alert(`영화 id : ${id}`);
+      alert(`${id}_${title} 페이지로 들어갑니다.`);
+      const movieURL = `https://www.themoviedb.org/movie/${id}`;
+      window.location.href = movieURL;
     });
   });
 }
 
+// 검색기능
 function handleSearch() {
   let input_val, keywords, movieList, title;
   input_val = document.getElementById("search-input").value;
+
+  // 검색란에 아무런 입력도 없을 시
   if (input_val === "") {
     alert("한 글자 이상 입력");
   }
 
-  keywords = input_val.toUpperCase();
+  //대소문자 구분 없이, 공백 있어도 검색 가능
+  keywords = input_val.toUpperCase().replace(/\s+/g, "");
   movieList = document.getElementsByClassName("movie-card");
   for (i = 0; i < movieList.length; i++) {
     title = movieList[i].getElementsByTagName("h2")[0].innerHTML;
-    if (title.toUpperCase().indexOf(keywords) > -1) {
+    if (title.toUpperCase().replace(/\s+/g, "").indexOf(keywords) > -1) {
       movieList[i].style.display = "block";
     } else {
       movieList[i].style.display = "none";
     }
   }
-
-  // return false;
 }
