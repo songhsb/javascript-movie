@@ -33,10 +33,10 @@ function showMovies(data) {
 
     card.className = "movie-card";
     card.innerHTML = `
-    <img class=img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" />
-            <h2 class="card-title">${title}</h2>
-            <p class="card-rating">${vote_average}</p>
-            <p class="card-overview">${overview}</p>
+                      <img class=img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" />
+                      <h2 class="card-title">${title}</h2>
+                      <p class="card-rating">${vote_average}</p>
+                      <p class="card-overview">${overview}</p>
     `;
 
     cardSection.appendChild(card);
@@ -46,4 +46,25 @@ function showMovies(data) {
       alert(`영화 id : ${id}`);
     });
   });
+}
+
+function handleSearch() {
+  let input_val, keywords, movieList, title;
+  input_val = document.getElementById("search-input").value;
+  if (input_val === "") {
+    alert("한 글자 이상 입력");
+  }
+
+  keywords = input_val.toUpperCase();
+  movieList = document.getElementsByClassName("movie-card");
+  for (i = 0; i < movieList.length; i++) {
+    title = movieList[i].getElementsByTagName("h2")[0].innerHTML;
+    if (title.toUpperCase().indexOf(keywords) > -1) {
+      movieList[i].style.display = "block";
+    } else {
+      movieList[i].style.display = "none";
+    }
+  }
+
+  // return false;
 }
