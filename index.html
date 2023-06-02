@@ -11,16 +11,16 @@
     <header>
       <h1>영화 평점</h1>
     </header>
-    <!-- 검색 시 새로고침 막기 return false -->
-    <form class="search" onsubmit="handleSearch(event); return false;">
+    <form class="search" onsubmit="handleSearch(event); return false">
       <label>영화 검색 : </label>
       <input
         type="text"
         id="search-input"
         name="pass"
+        onkeyup="movieSearch();"
         placeholder="영화 제목을 검색해 보세요"
       />
-      <button type="submit" id="search-btn">검색</button>
+      <!-- <button type="submit" id="search-btn">검색</button> -->
     </form>
     <!-- 카드 삽입 -->
     <section class="card-list"></section>

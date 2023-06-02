@@ -49,15 +49,10 @@ function showMovies(data) {
   });
 }
 
-// 검색기능
-function handleSearch() {
+// 검색기능 실시간 반영
+function movieSearch() {
   let input_val, keywords, movieList, title;
   input_val = document.getElementById("search-input").value;
-
-  // 검색란에 아무런 입력도 없을 시
-  if (input_val === "") {
-    alert("한 글자 이상 입력");
-  }
 
   //대소문자 구분 없이, 공백 있어도 검색 가능
   keywords = input_val.toUpperCase().replace(/\s+/g, "");
@@ -69,5 +64,14 @@ function handleSearch() {
     } else {
       movieList[i].style.display = "none";
     }
+  }
+}
+
+// 검색 창에 아무 값도 입력하지 않고 Enter를 누르면
+function handleSearch(event) {
+  let input_val;
+  input_val = document.getElementById("search-input").value;
+  if (input_val === "") {
+    alert("한 글자 이상 입력");
   }
 }
