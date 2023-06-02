@@ -68,7 +68,7 @@ function movieSearch() {
 }
 
 // 검색 창에 아무 값도 입력하지 않고 Enter를 누르면
-function handleSearch(event) {
+function handleSearch() {
   let input_val;
   input_val = document.getElementById("search-input").value;
   if (input_val === "") {
